@@ -5,6 +5,7 @@ import {
   View
 } from 'react-native';
 import firebase from 'firebase';
+import Login from './Login';
 
 export default class App extends Component {
   componentWillMount() {
@@ -24,6 +25,7 @@ export default class App extends Component {
         <Text style={styles.welcome}>
           Welcome to my crm!
         </Text>
+        <Login />
       </View>
     );
   }
