@@ -5,9 +5,12 @@ import {
   View
 } from 'react-native';
 import firebase from 'firebase';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 import Login from './Login';
 import Loader from './Loader';
 import PeopleList from './PeopleList';
+import reducers from '../reducers/PeopleReducer';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +20,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5fcff',
   }
 })
+
+const store = createStore(reducers, 
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default class App extends Component {
   state = { loggedIn: null };
@@ -53,9 +60,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.renderInitialView()}
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {this.renderInitialView()}
+        </View>
+      </Provider>
     );
   }
 }
