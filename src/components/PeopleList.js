@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PersonItem from './PersonItem';
+import Icon from 'react-native-vector-icons/EvilIcons';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,6 +20,16 @@ const styles = StyleSheet.create({
 })
 
 class PeopleList extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'People',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon
+        name={'user'}
+        size={50}
+        style={{ color: tintColor }}
+      />
+    )
+  }
   componentWillMount() {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -28,7 +39,7 @@ class PeopleList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ListView 
+        <ListView
           enableEmptySections={true}
           dataSource={this.dataSource}
           renderRow={rowData => <PersonItem people={rowData} />}
