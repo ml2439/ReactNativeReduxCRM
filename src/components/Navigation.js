@@ -23,6 +23,19 @@ const Navigation = TabNavigator({
             backgroundColor: '#26a69a'
         },
     }
-})
+});
+
+
+/********************ONLY FOR TEST************************/
+// import { Text } from 'react-native'
+// import React from 'react'
+
+// const Navigation = () => {
+//     return (
+//         <Text>Test Navigation</Text>
+//     )
+// }
+/********************ONLY FOR TEST************************/
+
 
 export default Navigation;
