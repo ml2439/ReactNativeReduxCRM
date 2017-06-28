@@ -12,14 +12,14 @@ import Loader from './Loader';
 import Navigation from './Navigation';
 import reducers from '../reducers/PeopleReducer';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5fcff',
-  }
-})
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: '#f5fcff',
+//   }
+// })
 
 const store = createStore(reducers, 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -61,9 +61,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          {this.renderInitialView()}
-        </View>
+        {this.renderInitialView()}
       </Provider>
     );
   }
