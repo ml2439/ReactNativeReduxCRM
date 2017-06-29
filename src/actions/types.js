@@ -1,0 +1,6 @@
+const TYPES = {
+    SELECTED_PERSON: 'SELECTED_PERSON',
+    NONE_SELECTED: 'NONE_SELECTED'
+}
+
+export default TYPES
