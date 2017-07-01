@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import PersonItem from './PersonItem';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import PeopleDetail from './PeopleDetail';
+import { loadInitialContacts } from '../actions';
+import _ from 'lodash';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,15 +34,19 @@ class PeopleList extends Component {
     )
   }
 
+  componentWillMount() {
+    this.props.loadInitialContacts();
+  }
+
   renderInitialView() {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
     this.dataSource = ds.cloneWithRows(this.props.people);
-    
-    if(this.props.detailView) {
+
+    if (this.props.detailView) {
       return (
-        <PeopleDetail/>
+        <PeopleDetail />
       )
     } else {
       return (
@@ -63,10 +69,14 @@ class PeopleList extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    people: state.people,
-    detailView: state.detailView,
-  }
-}
+  const people = _.map(state.people, (val, uid) => {
+    return { ...val, uid };
+  });
 
-export default connect(mapStateToProps)(PeopleList);
+  return {
+    people,
+    detailView: state.detailView,
+  };
+};
+
+export default connect(mapStateToProps, { loadInitialContacts })(PeopleList);
