@@ -42,3 +42,15 @@ export const loadInitialContacts = () => {
     }
     
 }
+
+export const deleteContact = (uid) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/people/${uid}`)
+            .remove()
+            .then(() => {
+                dispatch({ type: TYPES.DELETE_CONTACT })
+            })
+    }
+    
+}

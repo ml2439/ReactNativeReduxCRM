@@ -1,8 +1,7 @@
-import people from './people.json';
 import TYPES from '../actions/types'
 
 const initialState = {
-    people,
+    people: [],
     detailView: false,
     personSelected: null,
     first_name: '',
@@ -54,6 +53,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 ...action.newPerson
+            }
+        case TYPES.DELETE_CONTACT:
+            return {
+                ...state,
+                detailView: false,
+                personSelected: null,
             }
         default:
             return state;
